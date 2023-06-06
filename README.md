@@ -1,2 +1,6 @@
 # django-jquery-event-calendar
-Create and HTML calendar that displays events created with Django
+Create an HTML calendar that displays events created with Django
+
+dateutil required
+
+pip install python-dateutil
