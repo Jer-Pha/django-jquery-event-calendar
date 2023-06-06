@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+    <head>
+        <!--Meta-->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="This is a an example of how to build an HTML calendar with Django and jQuery that dynamically adds events as they are created.">
+        <meta name="keywords" content="Django, Jquery, Event, Calendar, Example, Github, Sample, Python, Javascript, Html">
+        <meta name="author" content="Pharesoft">
+
+        <!--Title-->
+        <title>{% block title %}{% endblock %}</title>
+
+        <!--Styles-->
+        {% block styles %}{% endblock %}
+
+    </head>
+
+    <body>
+        <!--Main Content-->
+        {% block content %}{% endblock %}
+        <!--End Main Content-->
+
+        <!--Javascript-->
+        <script src="{% static 'calendar_app/scripts/jquery-3.7.0.min.js' %}"></script>
+        {% block scripts %}{% endblock %}
+    </body>
+</html>

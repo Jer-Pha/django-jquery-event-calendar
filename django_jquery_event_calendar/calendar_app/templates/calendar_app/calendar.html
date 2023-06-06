@@ -1,0 +1,299 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}View Calendar{% endblock %}
+{% block styles %}<link href="{% static 'calendar_app/styles/calendar.css' %}" rel="stylesheet" type="text/css">{% endblock %}
+
+{% block content %}
+    <input type="hidden" id="page-info" data-url="{{ request.path }}" data-session="{{ csrf_token }}" data-prev-month="{{ prev_month_name }}&nbsp;{{ prev_month_year }}" data-next-month="{{ next_month_name }}&nbsp;{{ next_month_year }}" />
+    <div id="calendar-container">
+        <table border="0" cellpadding="0" cellspacing="8" id="calendar-month">
+            <thead>
+                <tr>
+                    <th colspan="7"><h1 id="main-header"><span id="prev-month">&lt;&lt;</span><span id="calendar-header">{{ curr_month_name }}&nbsp;{{ curr_month_year }}</span><span id="next-month">&gt;&gt;</span></h1></th>
+                </tr>
+                <tr id="days-header">
+                    <th><h3>Sun</h3></th>
+                    <th><h3>Mon</h3></th>
+                    <th><h3>Tue</h3></th>
+                    <th><h3>Wed</h3></th>
+                    <th><h3>Thu</h3></th>
+                    <th><h3>Fri</h3></th>
+                    <th><h3>Sat</h3></th>
+                </tr>
+            </thead>
+
+            <tbody id="render-calendar">
+                <tr class="calendar-week">
+                    {% for date in curr_month_calendar.0 %}
+                        {% if date %}
+                        <td>
+                            <div class="calendar-day">
+                                <div class="calendar-content">
+                                    <div class="calendar-number">
+                                        <span class="mobile-header">
+                                            &nbsp;{{ curr_month_name }}&nbsp;
+                                        </span>{{ date }}
+                                        <div class="day-of-week">
+                                            <span class="mobile-header">
+                                                {% if forloop.counter0 == 0 %}
+                                                    Sunday
+                                                {% elif forloop.counter0 == 1 %}
+                                                    Monday
+                                                {% elif forloop.counter0 == 2 %}
+                                                    Tuesday
+                                                {% elif forloop.counter0 == 3 %}
+                                                    Wednesday
+                                                {% elif forloop.counter0 == 4 %}
+                                                    Thursday
+                                                {% elif forloop.counter0 == 5 %}
+                                                    Friday
+                                                {% elif forloop.counter0 == 6 %}
+                                                    Saturday
+                                                {% endif %}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    {% for event in events %}
+                                        {% if event.day == date %}
+                                            <div class="event-item" title="{{ event.title }}">
+                                                <a href="/calendar_app/view-event/{{ event.id }}">{{ event.title }}</a>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </td>
+                        {% else %}
+                            <td class="calendar-no-day"></td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+                <tr class="calendar-week">
+                    {% for date in curr_month_calendar.1 %}
+                    <td>
+                        <div class="calendar-day">
+                            <div class="calendar-content">
+                                <div class="calendar-number">
+                                    <span class="mobile-header">
+                                        &nbsp;{{ curr_month_name }}&nbsp;
+                                    </span>{{ date }}
+                                    <div class="day-of-week">
+                                        <span class="mobile-header">
+                                            {% if forloop.counter0 == 0 %}
+                                                Sunday
+                                            {% elif forloop.counter0 == 1 %}
+                                                Monday
+                                            {% elif forloop.counter0 == 2 %}
+                                                Tuesday
+                                            {% elif forloop.counter0 == 3 %}
+                                                Wednesday
+                                            {% elif forloop.counter0 == 4 %}
+                                                Thursday
+                                            {% elif forloop.counter0 == 5 %}
+                                                Friday
+                                            {% elif forloop.counter0 == 6 %}
+                                                Saturday
+                                            {% endif %}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                {% for event in events %}
+                                    {% if event.day == date %}
+                                        <div class="event-item" title="{{ event.title }}">
+                                            <a href="/calendar_app/view-event/{{ event.id }}">{{ event.title }}</a>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </td>
+                    {% endfor %}
+                </tr>
+                <tr class="calendar-week">
+                    {% for date in curr_month_calendar.2 %}
+                    <td>
+                        <div class="calendar-day">
+                            <div class="calendar-content">
+                                <div class="calendar-number">
+                                    <span class="mobile-header">
+                                        &nbsp;{{ curr_month_name }}&nbsp;
+                                    </span>{{ date }}
+                                    <div class="day-of-week">
+                                        <span class="mobile-header">
+                                            {% if forloop.counter0 == 0 %}
+                                                Sunday
+                                            {% elif forloop.counter0 == 1 %}
+                                                Monday
+                                            {% elif forloop.counter0 == 2 %}
+                                                Tuesday
+                                            {% elif forloop.counter0 == 3 %}
+                                                Wednesday
+                                            {% elif forloop.counter0 == 4 %}
+                                                Thursday
+                                            {% elif forloop.counter0 == 5 %}
+                                                Friday
+                                            {% elif forloop.counter0 == 6 %}
+                                                Saturday
+                                            {% endif %}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                {% for event in events %}
+                                    {% if event.day == date %}
+                                        <div class="event-item" title="{{ event.title }}">
+                                            <a href="/calendar_app/view-event/{{ event.id }}">{{ event.title }}</a>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </td>
+                    {% endfor %}
+                </tr>
+                <tr class="calendar-week">
+                    {% for date in curr_month_calendar.3 %}
+                    <td>
+                        <div class="calendar-day">
+                            <div class="calendar-content">
+                                <div class="calendar-number">
+                                    <span class="mobile-header">
+                                        &nbsp;{{ curr_month_name }}&nbsp;
+                                    </span>{{ date }}
+                                    <div class="day-of-week">
+                                        <span class="mobile-header">
+                                            {% if forloop.counter0 == 0 %}
+                                                Sunday
+                                            {% elif forloop.counter0 == 1 %}
+                                                Monday
+                                            {% elif forloop.counter0 == 2 %}
+                                                Tuesday
+                                            {% elif forloop.counter0 == 3 %}
+                                                Wednesday
+                                            {% elif forloop.counter0 == 4 %}
+                                                Thursday
+                                            {% elif forloop.counter0 == 5 %}
+                                                Friday
+                                            {% elif forloop.counter0 == 6 %}
+                                                Saturday
+                                            {% endif %}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                {% for event in events %}
+                                    {% if event.day == date %}
+                                        <div class="event-item" title="{{ event.title }}">
+                                            <a href="/calendar_app/view-event/{{ event.id }}">{{ event.title }}</a>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </td>
+                    {% endfor %}
+                </tr>
+                {% if 4 < curr_month_calendar|length %}
+                <tr class="calendar-week">
+                    {% for date in curr_month_calendar.4 %}
+                        {% if date %}
+                        <td>
+                            <div class="calendar-day">
+                                <div class="calendar-content">
+                                    <div class="calendar-number">
+                                        <span class="mobile-header">
+                                            &nbsp;{{ curr_month_name }}&nbsp;
+                                        </span>{{ date }}
+                                        <div class="day-of-week">
+                                            <span class="mobile-header">
+                                                {% if forloop.counter0 == 0 %}
+                                                    Sunday
+                                                {% elif forloop.counter0 == 1 %}
+                                                    Monday
+                                                {% elif forloop.counter0 == 2 %}
+                                                    Tuesday
+                                                {% elif forloop.counter0 == 3 %}
+                                                    Wednesday
+                                                {% elif forloop.counter0 == 4 %}
+                                                    Thursday
+                                                {% elif forloop.counter0 == 5 %}
+                                                    Friday
+                                                {% elif forloop.counter0 == 6 %}
+                                                    Saturday
+                                                {% endif %}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    {% for event in events %}
+                                        {% if event.day == date %}
+                                            <div class="event-item" title="{{ event.title }}">
+                                                <a href="/calendar_app/view-event/{{ event.id }}">{{ event.title }}</a>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </td>
+                        {% else %}
+                            <td class="calendar-no-day"></td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+                {% endif %}
+                {% if 5 < curr_month_calendar|length %}
+                <tr class="calendar-week">
+                    {% for date in curr_month_calendar.5 %}
+                        {% if date %}
+                        <td>
+                            <div class="calendar-day">
+                                <div class="calendar-content">
+                                    <div class="calendar-number">
+                                        <span class="mobile-header">
+                                            &nbsp;{{ curr_month_name }}&nbsp;
+                                        </span>{{ date }}
+                                        <div class="day-of-week">
+                                            <span class="mobile-header">
+                                                {% if forloop.counter0 == 0 %}
+                                                    Sunday
+                                                {% elif forloop.counter0 == 1 %}
+                                                    Monday
+                                                {% elif forloop.counter0 == 2 %}
+                                                    Tuesday
+                                                {% elif forloop.counter0 == 3 %}
+                                                    Wednesday
+                                                {% elif forloop.counter0 == 4 %}
+                                                    Thursday
+                                                {% elif forloop.counter0 == 5 %}
+                                                    Friday
+                                                {% elif forloop.counter0 == 6 %}
+                                                    Saturday
+                                                {% endif %}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    {% for event in events %}
+                                        {% if event.day == date %}
+                                            <div class="event-item" title="{{ event.title }}">
+                                                <a href="/calendar_app/view-event/{{ event.id }}">{{ event.title }}</a>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </td>
+                        {% else %}
+                            <td class="calendar-no-day"></td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block scripts %}<script src="{% static 'calendar_app/scripts/calendar.js' %}"></script>{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}View Event{% endblock %}
+
+{% block content %}
+    {% for event in events %}
+        <h1>{{ event.title }}</h1>
+        <h3>{{ event.date }}</h3>
+        <h3>{{ event.time }}</h3>
+        <p>{{ event.notes }}</p>
+    {% endfor %}
+{% endblock %}

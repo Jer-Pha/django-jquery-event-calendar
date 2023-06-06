@@ -1,0 +1,139 @@
+/* Default settings and compact view */
+
+#calendar-container {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+#calendar-month {
+    width: 100%;
+}
+
+.calendar-week {
+    display: contents;
+}
+
+.calendar-week > td:not(.calendar-no-day) {
+    display: table-row;
+    vertical-align: top;
+}
+
+.calendar-day {
+    width: 100%;
+    min-height: 2.5rem;
+    box-shadow: none;
+}
+
+#days-header,
+.calendar-no-day,
+.calendar-no-day > div {
+    display: none;
+}
+
+.calendar-number {
+    padding: 0.4rem;
+    font-size: 1.1rem;
+    border-bottom: 1px solid black;
+}
+
+.calendar-number:not(:last-child) {
+    border-bottom: 0 !important;
+}
+
+.event-item {
+    font-size: 1rem;
+    border-radius: 0.3rem;
+    padding: 0.2rem;
+    margin-bottom: 0.2rem;
+    cursor: pointer;
+    border: 1px solid black;
+}
+
+.event-item > a {
+    color: black;
+    text-decoration: none;
+}
+
+.mobile-header {
+    display: initial;
+}
+
+.day-of-week {
+    float: right;
+}
+
+#main-header {
+    user-select: none;
+}
+
+#prev-month {
+    float: left;
+}
+
+#next-month {
+    float: right;
+}
+
+#prev-month,
+#next-month {
+    cursor: pointer;
+}
+
+/* Change from compact view to full view if screen width is more than 1024px */
+
+@media only screen and (min-width: 1025px) {
+    #calendar-container {
+        width: 80vw;
+        margin: 0 auto;
+    }
+
+    .schedule-container {
+        grid-template-columns: repeat(10, 1fr);
+        grid-template-rows: auto;
+
+        grid-template-areas:
+            ". calendar calendar calendar calendar calendar calendar calendar calendar .";
+    }
+
+    #calendar-month {
+        table-layout: fixed;
+    }
+
+    #days-header,
+    .calendar-week {
+        height: 100%;
+        display: table-row;
+    }
+
+    .calendar-week td {
+        height: 100%;
+        display: table-cell !important;
+    }
+
+    .calendar-day {
+        min-height: 9vw;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px 3px, rgba(0, 0, 0, 0.15) 0px 0px 2px;
+    }
+
+    .calendar-number {
+        border-bottom: 0;
+        font-size: 0.9rem;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(255, 255, 255, 0.3));
+    }
+
+    .event-item {
+        font-size: 0.8rem;
+        padding: 0.2rem;
+        max-height: 1.67rem;
+        overflow: hidden;
+    }
+
+    .mobile-header {
+        display: none;
+    }
+
+    .day-of-week {
+        float: none;
+    }
+}
